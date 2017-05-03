@@ -35,22 +35,22 @@ Please replace all user variables in the above command defined by <> with the co
 **Example**
 ```
 docker run -d \
+    --name=deluge \
     -p 8112:8112 \
     -p 58846:58846 \
     -p 58946:58946 \
-    --name=deluge \
     -v /apps/docker/deluge/data:/data \
     -v /apps/docker/deluge/config:/config \
     -v /etc/localtime:/etc/localtime:ro \
     -e UMASK=022 \
-    -e PUID=0 \
-    -e PGID=0 \
+    -e PUID=1000 \
+    -e PGID=000 \
     kucrut/deluge
 ```
 
 **Notes**<br>
 
-User ID (PUID) and Group ID (PGID) can be found by issuing the following command for the user you want to run the container as:-
+Setting PUID (User ID) and PGID (Group ID) environment variable is optional and they can be found by issuing the following command for the user you want to run the container as:
 
 ```
 id <username>
